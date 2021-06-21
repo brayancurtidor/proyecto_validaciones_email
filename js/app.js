@@ -147,6 +147,9 @@ function enviarlemail(e) //siempe que es de tipo submit hay que quitarle recarga
     {
         mensajeEnviar.remove() //esto eliminara el mesanje de enviado
         formulariEmail.reset();
+        btnenviar.disabled=true; //para bloquear un elememto
+        btnenviar.classList.add('cursor-not-allowed', 'opacity-50'); //para remover el estylo de la clase
+      
     },5000);
 },3000);
 }
@@ -158,6 +161,6 @@ function resetearFormulario(e)
     e.preventDefault();
     btnenviar.disabled=true; //para bloquear un elememto
     btnenviar.classList.add('cursor-not-allowed', 'opacity-50'); //para remover el estylo de la clase
-
+   
 }
 
