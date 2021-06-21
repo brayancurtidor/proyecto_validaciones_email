@@ -1,4 +1,5 @@
 //variables
+const btnresetaear=document.querySelector('#resetBtn');
 const btnenviar=document.querySelector('#enviar');
 const email=document.querySelector('#email');
 const asunto=document.querySelector('#asunto');
@@ -18,7 +19,7 @@ mensaje.addEventListener('blur',validarformulario); //blur significa que hace al
 asunto.addEventListener('blur',validarformulario); //blur significa que hace algo cuando me pongo en un input y despues mde retiroo
 fecha.addEventListener('blur',validarformulario);
 hora.addEventListener('blur',validarformulario);
-
+btnresetaear.addEventListener('click',resetearFormulario);
 formulariEmail.addEventListener('submit',enviarlemail);
 }
 
@@ -135,7 +136,28 @@ function enviarlemail(e) //siempe que es de tipo submit hay que quitarle recarga
     spinerjs.style.display='flex'; //mostrar el spiner 
 
     //mostrar el spinner en un tiempo deteminado 
-    setTimeout(()=>{ console.log('esto se ejecuta po r3 segundo')},3000);
+    setTimeout(()=>{ spinerjs.style.display='none'
+    //insertar un mensaje que dice que se inserto correctamente
+    const mensajeEnviar=document.createElement('p');
+    mensajeEnviar.textContent=`El mensaje se enviara en la fecha:  ${fecha.value}Hora: ${hora.value}`
+    mensajeEnviar.classList.add('text-center','my-10','p-2','bg-green-500','text-white','font-bold','uppercase');
+    //inserta el parrafo antes del espinner
+    formulariEmail.insertBefore(mensajeEnviar,spinerjs);
+    setTimeout(()=>
+    {
+        mensajeEnviar.remove() //esto eliminara el mesanje de enviado
+        formulariEmail.reset();
+    },5000);
+},3000);
+}
+
+//funcion para hacer un reset 
+function resetearFormulario(e)
+{
+    formulariEmail.reset();
+    e.preventDefault();
+    btnenviar.disabled=true; //para bloquear un elememto
+    btnenviar.classList.add('cursor-not-allowed', 'opacity-50'); //para remover el estylo de la clase
 
 }
 
