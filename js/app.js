@@ -130,6 +130,10 @@ function mostrarError(mensajeErrorParametro)
 function enviarlemail(e) //siempe que es de tipo submit hay que quitarle recargar por defecto
 {
     e.preventDefault();
+    
+    const f3=new Date(Date.now()).getTime(); //converti la fecha actual en segundos
+
+    
 
     //mostrar spiner
     const spinerjs=document.querySelector('#spinner'); 
@@ -139,7 +143,7 @@ function enviarlemail(e) //siempe que es de tipo submit hay que quitarle recarga
     setTimeout(()=>{ spinerjs.style.display='none'
     //insertar un mensaje que dice que se inserto correctamente
     const mensajeEnviar=document.createElement('p');
-    mensajeEnviar.textContent=`El mensaje se enviara en la fecha:  ${fecha.value}Hora: ${hora.value}`
+    mensajeEnviar.textContent=`El mensaje se enviara en la fecha:${fecha.value}`+"\n"+ `Hora: ${hora.value}`
     mensajeEnviar.classList.add('text-center','my-10','p-2','bg-green-500','text-white','font-bold','uppercase');
     //inserta el parrafo antes del espinner
     formulariEmail.insertBefore(mensajeEnviar,spinerjs);
@@ -149,9 +153,14 @@ function enviarlemail(e) //siempe que es de tipo submit hay que quitarle recarga
         formulariEmail.reset();
         btnenviar.disabled=true; //para bloquear un elememto
         btnenviar.classList.add('cursor-not-allowed', 'opacity-50'); //para remover el estylo de la clase
+     
+        console.log( `fecha programada ${f}`);
+        console.log( `fecha hoy ${f3}`);
+        
       
-    },5000);
-},3000);
+    },4000);
+    
+},6000);
 }
 
 //funcion para hacer un reset 
